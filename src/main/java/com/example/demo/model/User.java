@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -47,4 +48,7 @@ public class User {
                 ", createDate='" + createDate + '\'' +
                 '}';
     }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<TimeRecord> timeRecords;
 }
