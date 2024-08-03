@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Upload</title>
+    <script>
+        function updatePlayer() {
+            var dropdown = document.getElementById("musicDropdown");
+            var selectedOption = dropdown.options[dropdown.selectedIndex];
+            var audioPlayer = document.getElementById("audioPlayer");
+
+            if (selectedOption.value !== "") {
+                audioPlayer.src = selectedOption.value;
+                audioPlayer.style.display = "block";
+            } else {
+                audioPlayer.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Upload Music</h1>
+<form action="#" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" required>
+    </div>
+    <div>
+        <label for="file">File:</label>
+        <input type="file" id="file" name="file" required>
+    </div>
+    <button type="submit">Upload</button>
+</form>
+
+<h2>Uploaded Music</h2>
+<div th:if="${musicList != null}">
+    <select id="musicDropdown" onchange="updatePlayer()">
+        <option value="">Select a music file</option>
+        <option th:each="music : ${musicList}" th:value="${music.filePath}" th:text="${music.title} + ' - ' + ${music.artist}"></option>
+    </select>
+    <audio id="audioPlayer" controls style="display: none;"></audio>
+</div>
+</body>
+</html>
+
