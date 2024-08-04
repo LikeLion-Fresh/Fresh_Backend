@@ -60,16 +60,6 @@ public class IndexController {
         return "user";
     }
 
-    @GetMapping("/admin")
-    public @ResponseBody String admin() {
-        return "admin";
-    }
-
-    @GetMapping("/manager")
-    public @ResponseBody String manager() {
-        return "manager";
-    }
-
     @GetMapping("/loginForm")
     public String loginForm() {
         return "loginForm";
@@ -94,18 +84,6 @@ public class IndexController {
         user.setPassword(encPassword);
         userRepository.save(user);
         return "redirect:/loginForm";
-    }
-
-    @Secured("ROLE_ADMIN")
-    @GetMapping("/info")
-    public @ResponseBody String info() {
-        return "개인정보";
-    }
-
-    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
-    @GetMapping("/data")
-    public @ResponseBody String data() {
-        return "데이터정보";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUB')")

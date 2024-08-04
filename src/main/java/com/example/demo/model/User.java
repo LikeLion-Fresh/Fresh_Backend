@@ -15,7 +15,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String username;
     private String password;
     private String email;
@@ -35,6 +35,10 @@ public class User {
         this.provider = provider;
         this.providerId = providerId;
         this.createDate = createDate;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
     @Override
