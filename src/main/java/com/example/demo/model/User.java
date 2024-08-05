@@ -38,10 +38,6 @@ public class User {
         this.createDate = createDate;
     }
 
-    public Long getId() {
-        return this.id;
-    }
-
     @Override
     public String toString() {
         return "User{" +
