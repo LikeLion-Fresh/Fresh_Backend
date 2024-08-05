@@ -21,7 +21,6 @@ public class MusicService {
     // 업로드된 파일을 저장할 디렉토리 경로...
     private final String UPLOAD_DIR = "uploads/";
 
-
     // 음악 파일 업로드 메서드...
     public Music uploadMusic(MultipartFile file, String title, String artist) throws IOException {
         if (file.isEmpty()) {
@@ -39,11 +38,14 @@ public class MusicService {
         Path filePath = uploadPath.resolve(fileName);
         Files.copy(file.getInputStream(), filePath);
 
+        // 파일 경로를 URL 호환 형식으로 변환
+        String urlPath = fileName.replace("\\", "/");
+
         // 음악 정보를 데이터베이스에 저장...
         Music music = new Music();
         music.setTitle(title);
         music.setArtist(artist);
-        music.setFilePath(filePath.toString());
+        music.setFilePath(urlPath);
         music.setUploadTime(new Timestamp(System.currentTimeMillis()));
 
         return musicRepository.save(music);
