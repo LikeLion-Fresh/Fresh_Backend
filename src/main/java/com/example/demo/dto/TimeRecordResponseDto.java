@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @ApiModel(value = "시간 측정 반환 DTO")
 public class TimeRecordResponseDto {
     private Long id;
-    private Float breakTimes;
+    private Integer breakTimes;
     private LocalDateTime startedAt;
     private LocalDateTime endedAt;
 }

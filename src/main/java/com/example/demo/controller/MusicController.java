@@ -1,7 +1,7 @@
-package com.example.musicupload.controller;
+package com.example.demo.controller;
 
-import com.example.musicupload.model.Music;
-import com.example.musicupload.service.MusicService;
+import com.example.demo.model.Music;
+import com.example.demo.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller//View 리턴하겠다!
+@Controller //View 리턴하겠다!
 public class IndexController {
 
     @Autowired

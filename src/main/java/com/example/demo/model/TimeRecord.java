@@ -21,7 +21,7 @@ public class TimeRecord {
     private Long id;
 
     @Column(name = "RECORD_BREAKTIMES")
-    private Float breakTimes;
+    private Integer breakTimes;
 
     @Column(name = "STARTED_AT")
     private LocalDateTime startedAt;

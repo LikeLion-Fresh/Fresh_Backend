@@ -1,4 +1,4 @@
-package com.example.musicupload.model;
+package com.example.demo.model;
 
 import lombok.Data;
 
