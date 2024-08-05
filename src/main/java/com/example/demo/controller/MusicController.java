@@ -23,7 +23,7 @@ public class MusicController {
     private MusicService musicService;
 
     // 업로드 폼을 보여주고 현재 업로드된 음악 목록을 모델에 추가...
-    @GetMapping("/")
+    @GetMapping("/music")
     public String showUploadForm(Model model) {
         List<Music> musicList = musicService.getAllMusic();
         model.addAttribute("musicList", musicList);
