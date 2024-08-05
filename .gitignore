@@ -298,3 +298,6 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,git,java,maven,gradle,intellij
 target/classes/application.properties
 *.properties
+
+.target/
+target/

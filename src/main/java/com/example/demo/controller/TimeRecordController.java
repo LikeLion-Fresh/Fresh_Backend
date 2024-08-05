@@ -29,11 +29,11 @@ public class TimeRecordController {
     @ApiOperation(value = "시간 측정 기록 목록 조회", notes = "범위를 지정하여 범위내 기록들을 조회합니다.")
     public ResponseEntity<List<TimeRecordResponseDto>> findTimeRecords(@RequestParam(name = "range", required = true) Integer range,
                                                                        Principal principal) {
-//        if(principal == null) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-//        }
-//        String username = principal.getName();
-        String username = "t    est";
+        if(principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        String username = principal.getName();
+//        String username = "test";
         List<TimeRecordResponseDto> results = timeRecordService.getTimeRecordList(username, range);
         return ResponseEntity.ok(results);
     }
@@ -42,11 +42,11 @@ public class TimeRecordController {
     @ApiOperation(value = "시간 측정 기록 조회", notes = "날짜를 이용해 시간 측정 기록을 조회합니다.")
     public ResponseEntity<List<TimeRecordResponseDto>> findTimeRecordsByDate(@RequestParam String date,
                                                                              Principal principal) {
-//        if(principal == null) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-//        }
-//        String username = principal.getName();
-            String username = "test";
+        if(principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        String username = principal.getName();
+//            String username = "test";
             List<TimeRecordResponseDto> results = timeRecordService.getTimeRecordListByDate(username, date);
             return ResponseEntity.ok(results);
     }
