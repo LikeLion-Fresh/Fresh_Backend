@@ -28,6 +28,7 @@ public class MusicController {
     public String showUploadForm(Model model) {
         List<Music> musicList = musicService.getAllMusic();
         model.addAttribute("musicList", musicList);
+        System.out.println("Music list size: " + musicList.size()); // 로그 추가
         return "upload";
     }
 

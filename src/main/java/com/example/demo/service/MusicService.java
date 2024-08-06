@@ -40,6 +40,7 @@ public class MusicService {
 
         // 파일 경로를 URL 호환 형식으로 변환
         String urlPath = fileName.replace("\\", "/");
+        System.out.println("Uploaded file path: " + urlPath); // 로그 추가
 
         // 음악 정보를 데이터베이스에 저장
         Music music = new Music();
