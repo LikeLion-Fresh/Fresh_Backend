@@ -1,6 +1,6 @@
-package com.example.musicupload.repository;
+package com.example.demo.repository;
 
-import com.example.musicupload.model.Music;
+import com.example.demo.model.Music;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MusicRepository extends JpaRepository<Music, Long> {

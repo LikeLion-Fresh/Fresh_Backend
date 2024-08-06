@@ -1,7 +1,7 @@
-package com.example.musicupload.service;
+package com.example.demo.service;
 
-import com.example.musicupload.model.Music;
-import com.example.musicupload.repository.MusicRepository;
+import com.example.demo.model.Music;
+import com.example.demo.repository.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
