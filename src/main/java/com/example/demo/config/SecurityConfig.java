@@ -1,4 +1,5 @@
 package com.example.demo.config;
+import com.example.demo.config.oauth.CustomAuthenticationSuccessHandler;
 import com.example.demo.config.oauth.PrincipalOauth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +16,15 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
+
+    @Autowired
     private PrincipalOauth2UserService principalOauth2UserService;
+
+    @Bean
+    public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+        return new CustomAuthenticationSuccessHandler();
+    }
 
     @Bean
     public BCryptPasswordEncoder encodePwd() {
@@ -36,6 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/loginForm")
                 .loginProcessingUrl("/login")
+                .successHandler(customAuthenticationSuccessHandler())
+                .loginPage("/loginForm")
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("http://localhost:3000", true) // 항상 리다이렉트
                 .and()
                 .exceptionHandling()
@@ -43,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login()
                 .loginPage("/loginForm")
+                .successHandler(customOAuth2SuccessHandler) // 커스텀 OAuth2 성공 핸들러 설정
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
     }
