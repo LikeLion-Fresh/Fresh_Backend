@@ -1,4 +1,5 @@
 package com.example.demo.config;
+import com.example.demo.config.handler.CustomOAuth2SuccessHandler;
 import com.example.demo.config.oauth.CustomAuthenticationSuccessHandler;
 import com.example.demo.config.oauth.PrincipalOauth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity

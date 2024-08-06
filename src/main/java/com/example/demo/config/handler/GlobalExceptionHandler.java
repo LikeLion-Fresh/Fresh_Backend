@@ -1,4 +1,4 @@
-package com.example.demo.handler;
+package com.example.demo.config.handler;
 
 import com.example.demo.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
