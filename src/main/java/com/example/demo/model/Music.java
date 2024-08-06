@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.musicupload.model;
 
 import lombok.Data;
 
@@ -18,6 +18,6 @@ public class Music {
     private String filePath;
     private Timestamp uploadTime;
 
-    // 이 클래스는 데이터베이스 테이블 'musics'와 매핑되는 엔터티...
-    // JPA가 자동으로 테이블을 생성 및 관리...
+    // 이 클래스는 데이터베이스 테이블 'musics'와 매핑되는 엔터티
+    // JPA가 자동으로 테이블을 생성 및 관리
 }
