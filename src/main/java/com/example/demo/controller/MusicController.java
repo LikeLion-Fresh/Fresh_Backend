@@ -18,11 +18,12 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
+@RequestMapping("/api/v1")
 public class MusicController {
     @Autowired
     private MusicService musicService;
 
-    // 업로드 폼을 보여주고 현재 업로드된 음악 목록을 모델에 추가...
+    // 업로드 폼을 보여주고 현재 업로드된 음악 목록을 모델에 추가
     @GetMapping("/music")
     public String showUploadForm(Model model) {
         List<Music> musicList = musicService.getAllMusic();
@@ -30,17 +31,17 @@ public class MusicController {
         return "upload";
     }
 
-    // 음악 파일 업로드 처리...
+    // 음악 파일 업로드 처리
     @PostMapping("/upload")
     public String uploadMusic(@RequestParam("file") MultipartFile file,
                               @RequestParam("title") String title,
                               @RequestParam("artist") String artist,
                               Model model) throws IOException {
         musicService.uploadMusic(file, title, artist);
-        return "redirect:/";  // 업로드 후 메인 페이지로 리다이렉트...
+        return "redirect:/api/v1/music";  // 업로드 후 메인 페이지로 리다이렉트
     }
 
-    // 업로드된 파일을 제공하는 메서드...
+    // 업로드된 파일을 제공하는 메서드
     @GetMapping("/uploads/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
