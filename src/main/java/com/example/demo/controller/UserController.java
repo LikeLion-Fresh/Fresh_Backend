@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,13 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class UserController {
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
-
-    @PostMapping("/subscribe")
+    @PostMapping("/user/subscribe")
     public ResponseEntity<?> subscribe(Principal principal) {
         try {
             userService.updateUserRole(principal.getName(), "ROLE_SUB");
@@ -26,7 +26,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/unsubscribe")
+    @PostMapping("/user/unsubscribe")
     public ResponseEntity<?> unsubscribe(Principal principal) {
         try {
             userService.updateUserRole(principal.getName(), "ROLE_USER");
