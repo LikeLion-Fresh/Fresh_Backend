@@ -8,12 +8,22 @@
             var dropdown = document.getElementById("musicDropdown");
             var selectedOption = dropdown.options[dropdown.selectedIndex];
             var audioPlayer = document.getElementById("audioPlayer");
+            var selectedMusicInfo = document.getElementById("selectedMusicInfo");
 
             if (selectedOption.value !== "") {
                 audioPlayer.src = selectedOption.value;
                 audioPlayer.style.display = "block";
+
+                // Display selected music info
+                var title = selectedOption.getAttribute("data-title");
+                var artist = selectedOption.getAttribute("data-artist");
+                var filePath = selectedOption.getAttribute("data-file-path");
+                selectedMusicInfo.innerHTML = `<p><strong>Title:</strong> ${title}</p>
+                                                <p><strong>Artist:</strong> ${artist}</p>
+                                                <p><strong>File Path:</strong> ${filePath}</p>`;
             } else {
                 audioPlayer.style.display = "none";
+                selectedMusicInfo.innerHTML = "";
             }
         }
     </script>
@@ -40,9 +50,15 @@
 <div th:if="${musicList != null}">
     <select id="musicDropdown" onchange="updatePlayer()">
         <option value="">Select a music file</option>
-        <option th:each="music : ${musicList}" th:value="@{'/api/v1/uploads/' + ${music.filePath}}" th:text="${music.title} + ' - ' + ${music.artist}"></option>
+        <option th:each="music : ${musicList}"
+                th:value="@{'/api/v1/uploads/' + ${music.filePath}}"
+                th:text="${music.title} + ' - ' + ${music.artist}"
+                th:data-title="${music.title}"
+                th:data-artist="${music.artist}"
+                th:data-file-path="@{${music.filePath}}"></option>
     </select>
     <audio id="audioPlayer" controls style="display: none;"></audio>
+    <div id="selectedMusicInfo"></div> <!-- Music info display -->
 </div>
 </body>
 </html>
